@@ -25,6 +25,7 @@ class Snake {
     }
 
     set X(val) {
+        console.log(val);
         if(val < 0 || val >= 300) {
             throw '撞墙了'
         }

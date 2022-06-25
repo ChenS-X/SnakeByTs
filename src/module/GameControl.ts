@@ -32,6 +32,7 @@ class GameControl {
 
         if (direction) {
             this.direction = direction;
+            // this.run();
         }
     }
 
@@ -39,13 +40,13 @@ class GameControl {
         try {
             switch (this.direction) {
                 case 'up':
-                    this.snake.Y -= 10;
+                    this.snake.Y = this.snake.Y - 10;
                     break;
                 case 'down':
                     this.snake.Y += 10;
                     break;
                 case 'right':
-                    this.snake.X += 10;
+                    this.snake.X = this.snake.X + 10;
                     break;
                 case 'left':
                     this.snake.X -= 10;
@@ -58,7 +59,17 @@ class GameControl {
             this.isAlive = false;
         }
 
+        // 检查蛇吃食物
+        this.checkEat();
+
         this.isAlive && setTimeout(this.run.bind(this), 300);
+    }
+
+    checkEat() {
+        if(this.snake.X == this.food.X && this.snake.Y == this.food.Y) {
+            console.log('吃食物了');
+            this.food.change();
+        }
     }
 
 }
