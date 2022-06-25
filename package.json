@@ -1,0 +1,29 @@
+{
+  "name": "Snake",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack server --open --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChenS-X/SnakeByTs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChenS-X/SnakeByTs/issues"
+  },
+  "homepage": "https://github.com/ChenS-X/SnakeByTs#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "ts-loader": "^8.0.18",
+    "typescript": "^4.1.6",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.2"
+  }
+}
