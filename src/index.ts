@@ -1,5 +1,5 @@
-function sum(a:number, b:number):number {
-    return a + b;
-}
+import './style/base.scss';
 
-sum(123, 456);
+import GameControl from './module/GameControl';
+
+const gc = new GameControl();
