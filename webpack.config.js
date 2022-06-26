@@ -32,7 +32,16 @@ module.exports = {
             },
             {
                 test: /\.s[ac]ss$/,
-                use: [isProd ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'sass-loader']
+                use: [isProd ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', {
+                    loader: 'postcss-loader',
+                    options: {
+                        postcssOptions: {
+                            plugins: [
+                                'postcss-preset-env'
+                            ]
+                        }
+                    }
+                }, 'sass-loader']
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
