@@ -1,6 +1,9 @@
 import Snake from "./Snake";
 import Food from "./Food";
 import ScrolePanel from "./ScrolePanel";
+import {sAlert} from './dialog';
+
+// const sDialog = Dialog();
 
 class GameControl {
     snake: Snake;
@@ -9,6 +12,11 @@ class GameControl {
 
     // 暂停开始按钮
     pauseBtn: HTMLElement;
+
+    // 吃到食物的音乐控件
+    eatBgmEl: HTMLAudioElement;
+    // gameover的音乐控件
+    goBgmEl: HTMLAudioElement;
 
     direction = '';
 
@@ -22,6 +30,9 @@ class GameControl {
         this.scrolePanel = new ScrolePanel();
 
         this.pauseBtn = document.getElementById('pause')!;
+
+        this.eatBgmEl = document.getElementById('eatBgm')! as HTMLAudioElement;
+        this.goBgmEl = document.getElementById('gameoverBgm')! as HTMLAudioElement;
 
         this.init();
     }
@@ -86,7 +97,14 @@ class GameControl {
             this.snake.X = x;
             this.snake.Y = y;
         } catch (error) {
-            alert(error + ', Game Over!')
+            // confirm()
+            this.goBgmEl.play();
+            // alert(error + ', Game Over!');
+            sAlert(error + '，Game Over！', '提示', ['重新开始', '确定'], (res:number) => {
+                // console.log('res:', res);
+                
+                res == 0 && (window.location.href = window.location.href);
+            });
             this.isAlive = false;
         }
 
@@ -95,9 +113,14 @@ class GameControl {
 
     checkEat(x:number,y:number) {
         if(x == this.food.X && y == this.food.Y) {
-            console.log('吃食物了');
+            // console.log('吃食物了');
+            // 播放迟到食物的声音
+            this.eatBgmEl.play();
+            // 食物更换位置（可以加上食物位置不能与蛇身重合）
             this.food.change();
+            // 蛇添加身体
             this.snake.addBody();
+            // 记分牌+1
             this.scrolePanel.addScrole();
         }
     }

@@ -1,0 +1,44 @@
+#sDialog{
+    max-width: 300px;
+    max-height: 300px;
+    min-width: 200px;
+    margin: auto;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 100px auto;
+    .title{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgb(0, 157, 255);
+        color: #fff;
+        padding: 8px;
+    }
+    .content{
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        // white-space: normal;
+        overflow: hidden;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: #fff;
+        padding: 20px 5px;
+        border-bottom: 1px solid #666;
+    }
+    .sbtns {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        background-color: #fff;
+        padding: 5px 0px;
+        button {
+            padding: 5px 10px;
+            margin-right: 20px;
+        }
+    }
+}

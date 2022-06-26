@@ -33,6 +33,13 @@ module.exports = {
             {
                 test: /\.s[ac]ss$/,
                 use: [isProd ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                type: 'asset'
+            }, {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac|woff2?|eot|ttf|otf)(\?.*)?$/,
+                type: 'asset/resource'
             }
         ]
     },
