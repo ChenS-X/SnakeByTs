@@ -27,7 +27,7 @@ class ScrolePanel {
         }
 
         this.scrole += 1;
-        this.lever = this.scrole % this.scroleU;
+        this.lever = Math.floor(this.scrole / this.scroleU) + 1;
 
         this.scroleEl.innerHTML = 'scrole：' + this.scrole + '';
         this.leverEl.innerHTML = 'lever：' + this.lever + '';
