@@ -9,14 +9,21 @@ $mainColor: #056d50;
 body{
     background-color: #eee;
 }
-
+#control{
+    width: 340px;
+    margin: 20px auto;
+    overflow: hidden;
+    button {
+        padding: 10px 30px;
+    }
+}
 #gamebox{
     width: 340px;
     height: 440px;
     background-color: $mainColor;
     border-radius: 10px;
     border: 5px solid #000;
-    margin: 100px auto 100px;
+    margin: 100px auto 10px;
     font:20px bold Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     
     #main{

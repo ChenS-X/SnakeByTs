@@ -7,7 +7,12 @@ class GameControl {
     food: Food;
     scrolePanel: ScrolePanel;
 
+    // 暂停开始按钮
+    pauseBtn: HTMLElement;
+
     direction = '';
+
+    isPause = true;
 
     isAlive = true;
 
@@ -16,6 +21,8 @@ class GameControl {
         this.food = new Food();
         this.scrolePanel = new ScrolePanel();
 
+        this.pauseBtn = document.getElementById('pause')!;
+
         this.init();
     }
 
@@ -23,16 +30,31 @@ class GameControl {
     init() {
         document.addEventListener('keydown', this.keyHandler.bind(this));
 
-        this.run();
+        // 暂停按钮事件
+        this.pauseBtn.addEventListener('click', this.pauseHandler.bind(this));
+
+        // this.run();
+    }
+
+    pauseHandler() {
+        this.isPause = !this.isPause;
+        this.pauseBtn.innerText = this.isPause === true ? '开始' : '暂停';
+
+        this.isPause === false && this.run();
+
+        if(this.direction === '' && this.isPause === false) {
+            this.direction = ['right', 'down'][Math.round(Math.random())];
+        }
     }
 
     keyHandler(event: KeyboardEvent) {
+        if(event.keyCode === 32) return this.pauseHandler();
+
         const key = event.key.toLowerCase();
         const direction = ['up', 'down', 'left', 'right'].find(item => key.indexOf(item) >= 0);
 
         if (direction) {
             this.direction = direction;
-            // this.run();
         }
     }
 
@@ -68,7 +90,7 @@ class GameControl {
             this.isAlive = false;
         }
 
-        this.isAlive && setTimeout(this.run.bind(this), 300 - ((this.scrolePanel.lever - 1) * 30));
+        this.isAlive && !this.isPause && setTimeout(this.run.bind(this), 300 - ((this.scrolePanel.lever - 1) * 30));
     }
 
     checkEat(x:number,y:number) {

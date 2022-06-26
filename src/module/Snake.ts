@@ -43,7 +43,7 @@ class Snake {
         }
         
         // 检测是否撞到自己了
-        this.checkCrash(val, this.Y);
+        // this.checkCrash(val, this.Y);
         
         this.moveBody();
 
@@ -68,7 +68,7 @@ class Snake {
         }
 
         // 检测是否撞到自己了
-        this.checkCrash(this.X, val);
+        // this.checkCrash(this.X, val);
 
         this.moveBody();
         this.head.style.top = val + 'px';
