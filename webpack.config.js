@@ -2,6 +2,7 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const {
     CleanWebpackPlugin
@@ -43,21 +44,30 @@ module.exports = {
                     }
                 }, 'sass-loader']
             },
-            {
+            /*{
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 type: 'asset'
             }, {
                 test: /\.(mp4|webm|ogg|mp3|wav|flac|aac|woff2?|eot|ttf|otf)(\?.*)?$/,
                 type: 'asset/resource'
-            }
+            }*/
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html',
-            inject: false
         }),
         new CleanWebpackPlugin(),
+        new CopyWebpackPlugin({
+            patterns: [{
+                from: path.resolve(__dirname, 'public'),
+                to: path.resolve(__dirname, 'dist'),
+                toType: 'dir',
+                filter: resourcePath => {
+                    return !/\.html$/.test(resourcePath)
+                }
+            }]
+        }),
         ...proPlugins
     ]
 }
